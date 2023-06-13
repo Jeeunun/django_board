@@ -66,3 +66,9 @@ def test_html_parameter_data2(request, my_id):
 # 먼저 화면을 rendering해주는 method
 def test_post_form(request):
     return render(request, 'test/test_post_form.html')
+
+def test_post_handle(request):
+    name = request.POST['my_name']
+    email = request.POST['my_email']
+    password = request.POST['my_password']
+    print(name, email, password)
