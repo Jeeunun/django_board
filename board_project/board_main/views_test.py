@@ -73,7 +73,8 @@ def test_post_handle(request):
         name = request.POST['my_name']
         email = request.POST['my_email']
         password = request.POST['my_password']
-        print(name, email, password)
+        # DB에 insert
+
         return  redirect('/') #home으로 가라 => localhost:8000/
     else:
         return render(request, 'test/test_post_form.html')
