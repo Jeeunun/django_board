@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.http import JsonResponse
+from django.shortcuts import render, redirect
+from django.http import JsonResponse, HttpResponse
 
 # create your views here. 
 
@@ -67,8 +67,10 @@ def test_html_parameter_data2(request, my_id):
 def test_post_form(request):
     return render(request, 'test/test_post_form.html')
 
+
 def test_post_handle(request):
     name = request.POST['my_name']
     email = request.POST['my_email']
     password = request.POST['my_password']
     print(name, email, password)
+    return  redirect('/') #home으로 가라 => localhost:8000/
