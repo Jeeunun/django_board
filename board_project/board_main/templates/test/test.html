@@ -12,5 +12,11 @@
         {% comment %} <h1> {{data.age}} </h1> {% endcomment %}
 
         {% comment %} 사용자가 get요청으로 넘긴data를 받아올 때 {% endcomment %}
+        {% comment %} <h1> 이름은 {{my_data.name}} </h1>
+        <h1> 이메일은 {{my_data.email}} </h1>
+        <h1> password는 {{my_data.password}} </h1> {% endcomment %}
     </body>
 </html>
+
+{% comment %} 파이썬 템플릿엔진과 html주석간의 선후문제가 발생할 경우{# #}를 통해 
+파이썬의 템플릿엔진 문법을 감싼다. {% endcomment %}
