@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponse
+from .models import Test
 
 # create your views here. 
 
@@ -70,11 +71,16 @@ def test_html_parameter_data2(request, my_id):
 
 def test_post_handle(request):
     if request.method == 'POST':
-        name = request.POST['my_name']
-        email = request.POST['my_email']
-        password = request.POST['my_password']
-        # DB에 insert
-
+        my_name = request.POST['my_name']
+        my_email = request.POST['my_email']
+        my_password = request.POST['my_password']
+        # DB에 insert -> save함수 사용.
+        # DB의 테이블과 sync가 맞는 Test클래스에서 객체를 만들어 save
+        t1 = Test()
+        t1.name = my_name
+        t1.email = my_email
+        t1.password = my_password
+        t1.save()
         return  redirect('/') #home으로 가라 => localhost:8000/
     else:
         return render(request, 'test/test_post_form.html')
