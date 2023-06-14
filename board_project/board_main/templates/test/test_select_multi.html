@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <meta charset = "UTF-8">
+        <title> 환영합니다. </title>
+    </head>
+    <body>
+        {% comment %} datas에서 data를 뽑아 for 반복문 {% endcomment %}
+        {% for data in datas%} 
+        <h1> 이름은 {{data.name}} </h1>
+        <h1> 이메일은 {{data.email}} </h1>
+        <h1> password는 {{data.password}} </h1> 
+        {% endfor %}
+        {% comment %} 파이썬 템플릿 엔진 / html문법X {% endcomment %}
+    </body>
+</html>
