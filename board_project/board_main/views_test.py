@@ -122,15 +122,29 @@ def test_select_multi(request):
 def test_update(request):
     if request.method == 'POST':
         my_id = request.POST['my_id']
+        t1 = Test.objects.get(id=my_id) #객체
         my_name = request.POST['my_name']
         my_email = request.POST['my_email']
         my_password = request.POST['my_password']
         print(type(my_id))
-        # t1 = Test()
-        # t1.name = my_name
-        # t1.email = my_email
-        # t1.password = my_password
-        # t1.save()
+        t1.name = my_name
+        t1.email = my_email
+        t1.password = my_password
+        # t1은 db에 저장된 값들 ->기존객체를 이용하여 다시 request받겠다 = update 
+        # save()함수는 신규객체를 save히면 insert, 기존객체를 save하면 update
+        t1.save()
         return  redirect('/') 
     else:
         return render(request, 'test/test_update.html')
+    
+# 삭제는 delete()함수 사용. update와 마찬가지로 기존객체 조회 후 delete()
+# def test_update(request):
+#     if request.method == 'POST':
+#         my_id = request.POST['my_id']
+#         t1 = Test.objects.get(id=my_id) #객체
+#         t1.delete()
+#         return  redirect('/') 
+#     else:
+#         return render(request, 'test/test_update.html')
+
+
