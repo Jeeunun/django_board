@@ -15,6 +15,6 @@
         password <input type = "text" class = "form-control" name = "my_password"value = {{authors.password}}> 
         </div>         
         <input type = "submit" value = "수정하기" class="btn btn-primary">
-        <a href = "/authors" class="btn btn-secondary"> 수정취소 </a>
+        <a href = "/authors/{{author.id}}" class="btn btn-secondary"> 수정취소 </a>
     </form>
  {% endblock %}    

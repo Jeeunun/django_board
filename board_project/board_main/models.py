@@ -25,4 +25,5 @@ class Post(models.Model):
     # DB에는 fk를 설정한 변수명에 _id가 붙게 된다. 
     # on_update = models.CASCADE 
     # DB에 author_id는 python에서는 author객체와 같은 것. 
-    author = models.ForeignKey(Author, on_delete = models.SET_NULL,  null = True)
+    author = models.ForeignKey(Author, on_delete = models.SET_NULL,  null = True, related_name= 'posts')
+    # related_name? 

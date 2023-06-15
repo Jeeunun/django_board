@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Author, Post
+from django.http import HttpResponse, HttpResponseNotFound
 
 def home(request):
     return render(request, 'home.html')
@@ -10,6 +11,7 @@ def author_list(request):
 
 def author_detail(request, my_id):
     author = Author.objects.get(id = my_id)
+    print(author.posts.count())
     return render(request, 'author/author_detail.html',{'authors': author})
 
 
@@ -56,9 +58,15 @@ def post_new(request):
         my_email = request.POST['my_email']    
         p1 = Post()
         if my_email:
-            a1 = Author.objects.get(email = my_email)
-            # 장고에서 a1객체에서 id값만 빼서, db에 저장할 때는 author_id에 id값을 저장
-            p1.author = a1 #{id:1, name:"hong", email:"hong@naver.com"}  
+            try:
+                a1 = Author.objects.get(email = my_email)
+                # 장고에서 a1객체에서 id값만 빼서, db에 저장할 때는 author_id에 id값을 저장
+                p1.author = a1 #{id:1, name:"hong", email:"hong@naver.com"}  
+            except Author.DoesNotExist:
+                #HttpResponse는 200 정상
+                #Http404 500에러
+                #HttpResponseNotFound는 404에러
+                return HttpResponseNotFound("존재하지 않는 이메일입니다.")
         p1.title = my_title
         p1.contents = my_contents
         p1.save()
